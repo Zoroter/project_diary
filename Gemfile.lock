@@ -115,6 +115,7 @@ GEM
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
+    hirb (0.7.3)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
@@ -268,10 +269,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
   devise
+  hirb
   jbuilder (~> 2.7)
   listen (~> 3.2)
   puma (~> 4.1)

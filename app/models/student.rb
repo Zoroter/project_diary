@@ -4,7 +4,7 @@ class Student < ApplicationRecord
   has_many :parents, through: :parent_students
   belongs_to :user
   has_many :attendances
-  belongs_to :group
+  belongs_to :group, optional: true
   has_many :reprimands
   has_many :proposed_grades
   has_many :grades

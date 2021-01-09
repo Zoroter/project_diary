@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   self.primary_key = "user_id"
   self.table_name = "users"
   has_one :address
