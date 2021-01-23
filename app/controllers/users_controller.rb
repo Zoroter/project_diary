@@ -1,19 +1,14 @@
 class UsersController < ApplicationController
 
 
-  def new
-    @user = User.new()
-    @address = Address.new()
-    @student = Student.new()
+  def edit 
+    @user = User.find(params[:id])
+    @adress = Address.where(user: @user)
   end
 
-  def create
-    @user = User.new(user_params)
-    @address = Address.new(address_params)
-    @user.save
-    @address.user = @user
-    @address.save
-    @student.user = @user
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
   end
 
 

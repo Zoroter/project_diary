@@ -1,0 +1,24 @@
+<h1 class="text-center mt-4 mb-5"> Edit your address</h1>
+<div class="container mt-4">
+  <%= form_for @address do |a| %>
+    <form>
+      <div class="form-group row justify-content-md-center">
+          <%= a.label :street, class: "col-2"%>
+          <%= a.text_field :street, class: "col-2" %>
+          <%= a.label :post_code,"Postcode", class: "col-2 ml-3"%>
+          <%= a.text_field :post_code, class: "col-2" %>
+        </div>
+        <div class="form-group row justify-content-md-center">
+          <%= a.label :home_number,"Home number", class: "col-2"%>
+          <%= a.text_field :home_number, class: "col-2" %>
+          <%= a.label :flat_number,"Flat number", class: "col-2 ml-3"%>
+          <%= a.text_field :flat_number, class: "col-2" %>
+        </div>
+        <div class="form-group row justify-content-md-center">
+          <%= a.label :province, class: "col-2" %>
+          <%= a.text_field :province, class: "col-6" %>
+        </div>
+      <div class="text-center"><button type="submit" class="btn btn-primary">Edit</button></div>
+    </form>
+  <% end %>
+</div>

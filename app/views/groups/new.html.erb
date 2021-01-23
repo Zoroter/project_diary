@@ -1,0 +1,26 @@
+<h1 class="text-center mt-4">Create new Class</h1>
+  <div class="container mt-4">
+    <%= form_for @group do |f| %>
+
+      <form>
+        <div class="form-group row">
+          <%= f.label :name, class: "col-2" %>
+          <%= f.text_field :name, class: "col-5" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :tutor, "Tutor", class: "col-2 mt-4" %>
+          <%= f.collection_select(:tutor, Tutor.all, :id, :id_full_name,
+          {prompt: "Make your selection from the list below"},{size: 4, class: "custom-select shadow rounded col-5" })%>
+        </div>
+        <div class="form-group row">
+          <%= f.label :students_id, "Students", class: "col-2 mt-4" %>
+          <%= f.collection_select(:student_ids, Student.all, :id, :id_full_name,
+          {prompt: "Make your selections from the list below"},{multiple: true, size: 8, class: "custom-select shadow rounded col-5" })%>
+        </div>
+   
+
+      <button type="submit" class="btn btn-primary">Create Class</button>
+      </form>
+    <% end %>
+  </div>
+</div>

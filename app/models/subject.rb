@@ -5,4 +5,10 @@ class Subject < ApplicationRecord
   has_many :proposed_grades
   has_many :grades
   has_many :final_grades
+  has_many :terms
+
+
+
+
+
 end

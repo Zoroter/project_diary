@@ -1,0 +1,22 @@
+<h1 class="text-center mt-4">Choose terms for subject</h1>
+  <div class="container mt-4">
+    <%= form_tag terms_path(@subject), method: :post do %>
+
+      <form>
+        <% @terms.each do |term| %>
+          <%= fields_for "terms[]", term do |tf| %>
+            <div class="form-group row mt-3 justify-content-md-center">
+              <%= tf.label "Lesson #{@terms.index(term)+1}", class: "col-2 ml-5" %>
+              <%= tf.label :day, class: "col-1 " %>
+              <%= tf.text_field :day, class: "col-2" %>
+              <div class="col-1"></div>
+              <%= tf.label :hour, class: "col-1 ml-5"  %>
+              <%= tf.text_field :hour, class: "col-2" %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button> </div>
+      </form>
+    <% end %>
+  </div>
+</div>

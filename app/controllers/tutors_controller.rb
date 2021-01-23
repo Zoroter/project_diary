@@ -1,30 +1,27 @@
-class StudentsController < ApplicationController
+class TutorsController < ApplicationController
 
   def new
     @user = User.new()
     @address = Address.new()
-    @student = Student.new()
-    if params[:dev]
-      respond_to do |format|
-        format.js { render partial: "dev/new_student"}
-      end
-    end
+    @tutor = Tutor.new()
   end
 
   def create
     @user = User.new(user_params)
     @address = Address.new(address_params)
-    @student = Student.new()
+    @tutor = Tutor.new()
     @user.save
     @address.user = @user
     @address.save
-    @student.user = @user 
-    @student.save
+    @tutor.user = @user 
+    @tutor.save
   end
 
 
 
   private
+
+
   def user_params
     params.require(:user).permit(:email, :password, :name, :sname, :is_man, :surname, :pin, :birth_date)
   end

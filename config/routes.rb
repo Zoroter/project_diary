@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   root 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :students
+  resources :students, only: [:new, :create]
   resources :users
-  resources :teachers
-
+  resources :teachers, only: [:new, :create]
+  get 'dev', to: 'dev#main'
+  resources :addresses, only: [:edit, :update]
+  resources :tutors, only: [:new, :create]
+  resources :subjects
+  resources :terms
+  resources :groups
 end

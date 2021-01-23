@@ -1,0 +1,65 @@
+<h1 class="text-center mt-4">Create new Tutor</h1>
+  <div class="container mt-4">
+    <%= form_for @tutor do |z| %>
+      <form>
+        <%= fields_for :user, @tutor.user do |f| %>
+          <div class="form-group row">
+            <%= f.label :name, class: "col-2" %>
+            <%= f.text_field :name, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :sname, "Second Name", class: "col-2" %>
+            <%= f.text_field :sname, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :surname, class: "col-2" %>
+            <%= f.text_field :surname, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :pin, "Personal id number", class: "col-2" %>
+            <%= f.text_field :pin, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :birth_date, "Birthdate", class: "col-2" %>
+            <%= f.text_field :birth_date, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :email, class: "col-2" %>
+            <%= f.email_field :email, class: "col-5" %>
+          </div>  
+          <div class="form-group row">
+            <%= f.label :password, class: "col-2" %>
+            <%= f.password_field :password, class: "col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :is_man, "Sex", class: "col-2"%>
+            <%= f.label :is_man, "Man", :value => "true", class: "col-1"  %>
+            <%= f.radio_button :is_man, true, class: "col-1" %>
+            <%= f.label :is_man, "Woman", :value => "false", class: "col-1" %>
+            <%= f.radio_button :is_man, false, :checked => true, class: "col-1" %>
+          </div>
+        <% end %>
+        <%= fields_for :address, @user.address do |a| %>
+          <div class="form-group row">
+            <%= a.label :street, class: "col-2"%>
+            <%= a.text_field :street, class: "col-2" %>
+            <%= a.label :post_code,"Postcode", class: "col-2"%>
+            <%= a.text_field :post_code, class: "col-2" %>
+          </div>
+          <div class="form-group row">
+            <%= a.label :home_number,"Home number", class: "col-2"%>
+            <%= a.text_field :home_number, class: "col-2" %>
+            <%= a.label :flat_number,"Flat number", class: "col-2"%>
+            <%= a.text_field :flat_number, class: "col-2" %>
+          </div>
+          <div class="form-group row">
+            <%= a.label :province, class: "col-2" %>
+            <%= a.text_field :province, class: "col-5" %>
+          </div>
+
+        <%end%>
+        <button type="submit" class="btn btn-primary">Create Tutor</button>
+      </form>
+    <% end %>
+  </div>
+</div>
