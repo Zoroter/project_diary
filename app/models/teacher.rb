@@ -7,7 +7,7 @@ class Teacher < ApplicationRecord
   has_many :subjects
   has_many :reprimands
   has_many :grades
-
+  
   def id_full_name
     "#{id} #{user.name} #{user.surname}"
   end

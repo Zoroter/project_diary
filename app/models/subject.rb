@@ -7,8 +7,4 @@ class Subject < ApplicationRecord
   has_many :final_grades
   has_many :terms
 
-
-
-
-
 end
