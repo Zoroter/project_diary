@@ -9,6 +9,7 @@ class SubjectsController < ApplicationController
     @subject.save
     times = subject_params[:times]
     redirect_to new_term_path(subject_params)
+
   end
 
   
