@@ -15,6 +15,8 @@ class TutorsController < ApplicationController
     @address.save
     @tutor.user = @user 
     @tutor.save
+    session[:user_id] = @user.user_id
+    redirect_to main_path
   end
 
 

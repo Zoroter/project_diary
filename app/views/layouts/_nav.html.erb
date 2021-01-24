@@ -7,25 +7,27 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link font-weight-bold" href="/main">HOME PAGE<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Delete your profile", user_path(current_user), method: :delete,data: { confirm: "Are you sure"}, class: "dropdown-item text-danger" %>
+          </div>
+        </li>
+      </ul>
+    <% end %>
     <form class="form-inline my-2 my-lg-0">
       <% if logged_in? %>
         <%= current_user.name %> <%= current_user.surname %>
+        <button type="button" class="btn btn-danger ml-4"><%= link_to 'Logout', logout_path, class: "nav-link text-white ", method: :delete %></button>
       <%end%>
-      <button type="button" class="btn btn-danger ml-4"><%= link_to 'Logout', logout_path, class: "nav-link text-white ", method: :delete %></button>
     </form>
   </div>
 </nav>

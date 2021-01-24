@@ -20,6 +20,8 @@ class StudentsController < ApplicationController
     @address.save
     @student.user = @user 
     @student.save
+    session[:user_id] = @user.user_id
+    redirect_to main_path
   end
 
 

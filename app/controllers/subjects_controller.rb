@@ -12,6 +12,9 @@ class SubjectsController < ApplicationController
 
   end
 
+  def index 
+
+  end
   
   def subject_params
     params.require(:subject).permit(:name, :teacher_id, :times)

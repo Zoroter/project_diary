@@ -2,6 +2,7 @@
 <div class="container mt-4">
   <%= form_for @user do |f| %>
     <form>
+      <% if logged_in? && current_user.is_admin == true %>
         <div class="form-group row">
           <%= f.label :name, class: "col-2" %>
           <%= f.text_field :name, class: "col-5" %>
@@ -22,6 +23,7 @@
           <%= f.label :birth_date, "Birthdate", class: "col-2" %>
           <%= f.text_field :birth_date, class: "col-5" %>
         </div>
+        <% end %>
         <div class="form-group row">
           <%= f.label :email, class: "col-2" %>
           <%= f.email_field :email, class: "col-5" %>
@@ -30,13 +32,15 @@
           <%= f.label :password, class: "col-2" %>
           <%= f.password_field :password, class: "col-5" %>
         </div>
-        <div class="form-group row">
-          <%= f.label :is_man, "Sex", class: "col-2"%>
-          <%= f.label :is_man, "Man", :value => "true", class: "col-1"  %>
-          <%= f.radio_button :is_man, true, class: "col-1" %>
-          <%= f.label :is_man, "Woman", :value => "false", class: "col-1" %>
-          <%= f.radio_button :is_man, false, :checked => true, class: "col-1" %>
-        </div>
+        <% if logged_in? && current_user.is_admin == true %>
+          <div class="form-group row">
+            <%= f.label :is_man, "Sex", class: "col-2"%>
+            <%= f.label :is_man, "Man", :value => "true", class: "col-1"  %>
+            <%= f.radio_button :is_man, true, class: "col-1" %>
+            <%= f.label :is_man, "Woman", :value => "false", class: "col-1" %>
+            <%= f.radio_button :is_man, false, :checked => true, class: "col-1" %>
+          </div>
+        <% end %>
       <%= fields_for :address, @user.address do |a| %>
         <div class="form-group row">
           <%= a.label :street, class: "col-2"%>
