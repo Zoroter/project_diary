@@ -8,7 +8,6 @@ class GroupsController < ApplicationController
 
     @group = Group.new(group_params)
     @group.tutor = Tutor.find(params[:group][:tutor])
-    byebug
     @group.save 
     
   end
