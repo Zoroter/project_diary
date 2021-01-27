@@ -12,8 +12,15 @@ class SubjectsController < ApplicationController
 
   end
 
-  def index 
+  def index
+    @subjects = Array.new(){Subject.new()}
+    @subjects = current_user.student.group.subjects if is_student?
+    @subjects = current_user.teacher.subjects if is_teacher?
+    @subjects = Subject.all if current_user.is_admin == true
+  end
 
+  def show
+    @subject = Subject.find(params[:id])
   end
   
   def subject_params

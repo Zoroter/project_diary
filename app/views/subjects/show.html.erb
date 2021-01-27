@@ -1,0 +1,36 @@
+<h1 class="text-center mt-4"> Subject details </h1>
+<div class="container-fluid" style="width: 90%;">
+
+  <% if @subject.group != nil %>
+    <table class="table table-bordered table-dark table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col"style="width: 20%;" class="text-center">Student</th>
+          <th scope="col" style="width: 30%;" class="text-center">Grades</th>
+          <th scope="col" style="width: 20%;"class="text-center">Grade Actions</th>
+          <th scope="col" style="width: 13%;"class="text-center">Proposed Grade</th>
+          <th scope="col" style="width: 13%;"class="text-center">Final Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subject.group.students.each do |student| %>
+          <tr>
+            <td class="text-center"><%= student.full_name %></td>
+            <td class="text-center">
+              <% student.grades.each do |grade| %>
+                <%= grade.value%> &nbsp;
+              <%end%> 
+            </td>
+            <td class="text-center">
+              <%= link_to "Add grade", new_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
+              <%= link_to "Grades details and more actions", new_grade_path, class: "badge badge-pill badge-light" %>
+            </td class="text-center">
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%end%> 
+
+</div>

@@ -11,5 +11,9 @@ class Teacher < ApplicationRecord
   def id_full_name
     "#{id} #{user.name} #{user.surname}"
   end
+
+  def full_name
+    "#{user.name} #{user.surname}"
+  end
   
 end

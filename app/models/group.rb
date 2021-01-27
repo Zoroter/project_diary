@@ -4,5 +4,5 @@ class Group < ApplicationRecord
   has_one :tutor
   has_many :tests
   has_many :students
-  has_many :lessons
+  has_many :subjects
 end

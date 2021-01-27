@@ -6,5 +6,6 @@ class Subject < ApplicationRecord
   has_many :grades
   has_many :final_grades
   has_many :terms
+  belongs_to :group
 
 end

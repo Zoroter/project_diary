@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
   <a class="navbar-brand" >Diary+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,11 +7,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <a class="nav-link font-weight-bold" href="/main">HOME PAGE<span class="sr-only">(current)</span></a>
+      <a class="nav-link font-weight-bold text-white" href="/main">HOME PAGE<span class="sr-only">(current)</span></a>
       </li>
       <% if logged_in? %>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -25,7 +25,16 @@
     <% end %>
     <form class="form-inline my-2 my-lg-0">
       <% if logged_in? %>
-        <%= current_user.name %> <%= current_user.surname %>
+        <div class="font-weight-bold">
+          <div class="mr-4">
+            <%=  "[TEACHER]" if is_teacher?  %>
+            <%= "[TUTOR]" if is_tutor? %></b>
+            <%= "[STUDENT]" if is_student? %>
+          </div>
+        </div>
+        <div class="font-weight-bold">
+          <%= current_user.name %> <%= current_user.surname %>
+        </div>
         <button type="button" class="btn btn-danger ml-4"><%= link_to 'Logout', logout_path, class: "nav-link text-white ", method: :delete %></button>
       <%end%>
     </form>

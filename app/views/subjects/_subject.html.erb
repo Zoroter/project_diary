@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <% if @subjects.length != 0 %>
+    <% @subjects.each do |subject| %>
+      <div class="col-6 mb-4">
+        <div class="card text-white bg-dark mb-3">
+          <div class="card-body">
+            <h4 class="card-title"><%= subject.name %> </h4>
+            <h5 class="card-subtitle mb-2">
+              <%= "Class: #{subject.group.name} " if subject.group !=nil && (is_teacher? || is_admin? == true) %>
+              <%= " Teacher: #{subject.teacher.full_name}" if is_student? || is_admin? == true %>
+            </h5>
+            <p class="card-text">opis lub sie zobaczy</p>
+            <%= link_to "View Subject", subject_path(subject), class:"badge badge-light mr-2" %>
+            <a href="#" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%end%>
+  </div>
+
+</div>
