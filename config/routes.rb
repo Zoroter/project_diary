@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :groups
   get 'main', to: 'subjects#index'
   resources :grades
+  resources :final_grades 
+  resources :proposed_grades
 end

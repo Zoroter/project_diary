@@ -1,0 +1,17 @@
+<h1 class="mt-4 text-center"> Add final grade for <b><%= Student.find(params[:student_id]).full_name%></b> Student </h1>
+
+<div class="container mt-5">
+  <div class="jumbotron bg-dark text-white">
+    <%= form_for @final_grade do |f| %>
+      <form>
+        <div class="form-group row justify-content-md-center">
+          <h3 class = "text-center"><%= f.label :value, class: "col-2"%>
+          <%= f.text_field :value, class: "col-2" %> </h3>
+        </div>
+        <%= hidden_field_tag(:student_id, params[:student_id]) %>
+        <%= hidden_field_tag(:subject_id, params[:subject_id]) %>
+        <div class="text-center"> <%= f.submit "Submit", class:"btn btn-light mt-4", style: "width: 35%;"%> </div> 
+      </form>
+    <% end %>
+  </div>
+</div>

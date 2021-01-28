@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_one :student
   has_one :tutor
 
+  def full_name 
+    "#{name} #{surname}"
+  end
+
 end

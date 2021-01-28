@@ -12,8 +12,10 @@
             </h5>
             <p class="card-text">opis lub sie zobaczy</p>
             <%= link_to "View Subject", subject_path(subject), class:"badge badge-light mr-2" %>
-            <a href="#" class="card-link">Edit</a>
-            <a href="#" class="card-link">Delete</a>
+            <% if is_admin? || is_teacher? %>
+              <%= link_to "Edit Subject", edit_subject_path(subject), class:"badge badge-info mr-2" %>
+              <%= link_to "Delete Subject", subject_path(subject), class:"badge badge-danger mr-2" %>
+            <% end %>
           </div>
         </div>
       </div>
