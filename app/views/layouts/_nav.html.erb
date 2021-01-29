@@ -6,27 +6,52 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      <a class="nav-link font-weight-bold text-white" href="/main">HOME PAGE<span class="sr-only">(current)</span></a>
-      </li>
+
       <% if logged_in? %>
+        <li class="nav-item active">
+          <a class="nav-link font-weight-bold text-white" href="/main">HOME PAGE<span class="sr-only">(current)</span></a>
+        </li>
+      <% end %>
+
+      <% if logged_in? && (is_student? || is_teacher?) && !is_admin? %>
+        <li>
+          <%= link_to "My Subjects", subjects_path, class:"nav-link text-white" %>
+        </li>
+      <% end %>
+
+      <% if logged_in? && is_admin? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Profile
+            Subjects
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <%= link_to "Delete your profile", user_path(current_user), method: :delete,data: { confirm: "Are you sure"}, class: "dropdown-item text-danger" %>
+            <%= link_to "View Subjects", subjects_path, class: "dropdown-item" %>
+            <%= link_to "Add new Subject", new_subject_path, class: "dropdown-item" %>
           </div>
         </li>
-      </ul>
+      <% end %>
+
+    <% if logged_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Delete your profile", user_path(current_user), method: :delete,data: { confirm: "Are you sure"}, class: "dropdown-item text-danger" %>
+        </div>
+      </li>
+    
     <% end %>
+  </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <% if logged_in? %>
         <div class="font-weight-bold">
           <div class="mr-4">
+            <%= "[ADMIN]" if is_admin? %>
             <%=  "[TEACHER]" if is_teacher?  %>
             <%= "[TUTOR]" if is_tutor? %></b>
             <%= "[STUDENT]" if is_student? %>
@@ -37,6 +62,7 @@
         </div>
         <button type="button" class="btn btn-danger ml-4"><%= link_to 'Logout', logout_path, class: "nav-link text-white ", method: :delete %></button>
       <%end%>
+
     </form>
   </div>
 </nav>

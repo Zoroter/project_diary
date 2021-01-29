@@ -38,19 +38,29 @@
               </td>
               <td class="text-center">
                 <%= link_to "Add grade", new_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
-                <%= link_to "Grades details and more actions", new_grade_path, class: "badge badge-pill badge-light" %>
+                <%= link_to "Grades details and more actions", grades_path(student_id:  student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-info" %>
               </td class="text-center">
               <td class="text-center">
-                <% if  student.proposed_grades.length != 0 && student.proposed_grades.where(subject_id: @subject.subject_id)[0] != nil %>
+                <% if  student.proposed_grades.where(subject_id: @subject.subject_id).length != 0 && student.proposed_grades.where(subject_id: @subject.subject_id)[0] != nil %>
                   <%= student.proposed_grades.where(subject_id: @subject.subject_id)[0].value %> <br>
                 <%end%>
-                <%= link_to "Add", new_proposed_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
+                <% if student.proposed_grades.where(subject_id: @subject.subject_id).length == 0 %>
+                  <%= link_to "Add", new_proposed_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
+                <% else %>
+                  <%= link_to "Edit", edit_proposed_grade_path(student.proposed_grades.where(subject_id: @subject.subject_id)[0]), class: "badge badge-pill badge-light" %>
+                  <%= link_to "Delete", proposed_grade_path(student.proposed_grades.where(subject_id: @subject.subject_id)[0]), method: :delete, class: "badge badge-pill badge-danger" %>
+                <% end %>
               </td>
               <td class="text-center">
-                <% if student.final_grades.length != 0 &&  student.final_grades.where(subject_id: @subject.subject_id)[0] != nil %>
+                <% if student.final_grades.where(subject_id: @subject.subject_id).length != 0 &&  student.final_grades.where(subject_id: @subject.subject_id)[0] != nil %>
                   <%= student.final_grades.where(subject_id: @subject.subject_id)[0].value %> <br>
                 <%end%>
-                <%= link_to "Add", new_final_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
+                <% if student.final_grades.where(subject_id: @subject.subject_id).length == 0 %>
+                  <%= link_to "Add", new_final_grade_path(student_id: student.student_id, subject_id: @subject.subject_id), class: "badge badge-pill badge-light" %>
+                <% else %>
+                  <%= link_to "Edit", edit_final_grade_path(student.final_grades.where(subject_id: @subject.subject_id)[0]), class: "badge badge-pill badge-light" %>
+                  <%= link_to "Delete", final_grade_path(student.final_grades.where(subject_id: @subject.subject_id)[0]), method: :delete, class: "badge badge-pill badge-danger" %>
+                <% end %>
               </td>
             </tr>
           <% end %>

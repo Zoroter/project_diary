@@ -8,7 +8,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     @subject.save
     times = subject_params[:times]
-    redirect_to new_term_path(subject_params)
+    redirect_to new_term_path(subject_id: @subject)
 
   end
 
@@ -22,9 +22,27 @@ class SubjectsController < ApplicationController
   def show
     @subject = Subject.find(params[:id])
   end
-  
+
+  def destroy
+    @subject = Subject.find(params[:id])
+    @subject.destroy 
+    redirect_to subjects_path
+  end 
+
+  def edit
+    @subject = Subject.find(params[:id])
+  end 
+
+  def update
+    @subject = Subject.find(params[:id])
+    @subject.update(subject_params)
+    times = subject_params[:times]
+    redirect_to edit_term_path(subject_id: @subject)
+  end
+
+
   def subject_params
-    params.require(:subject).permit(:name, :teacher_id, :times)
+    params.require(:subject).permit(:name, :teacher_id, :times, :group_id)
   end
     
 

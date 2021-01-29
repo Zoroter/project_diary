@@ -1,2 +1,7 @@
-<div class="h1 text-center mt-5"> Your Subjects</div>
+<div class="h1 text-center mt-5 mb-4 font-weight-bold"> Your Subjects</div>
+
+<% if logged_in? && is_admin? %>
+  <h2 class="text-center mb-4 "> <%= link_to "Create Subject", new_subject_path, class:"text-light bg-dark col-sm rounded-lg border border-dark"%> </h2>
+<% end %>
+
 <%= render 'subject' %>

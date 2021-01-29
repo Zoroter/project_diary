@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <% if @subjects.length != 0 %>
+    <% if @subjects != 0 %>
     <% @subjects.each do |subject| %>
       <div class="col-6 mb-4">
         <div class="card text-white bg-dark mb-3">
@@ -14,7 +14,7 @@
             <%= link_to "View Subject", subject_path(subject), class:"badge badge-light mr-2" %>
             <% if is_admin? || is_teacher? %>
               <%= link_to "Edit Subject", edit_subject_path(subject), class:"badge badge-info mr-2" %>
-              <%= link_to "Delete Subject", subject_path(subject), class:"badge badge-danger mr-2" %>
+              <%= link_to "Delete Subject", subject_path(subject), data: {confirm: "Are you sure"}, method: :delete, class:"badge badge-danger mr-2" %>
             <% end %>
           </div>
         </div>

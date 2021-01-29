@@ -17,12 +17,24 @@ class GradesController < ApplicationController
 
   end
 
-  def index
+  def edit 
+    @grade = Grade.find(params[:id])
+  end 
 
+  def update 
+    @grade = Grade.find(params[:id])
+    @grade.update(grade_params)
+    redirect_to grades_path(subject_id: params[:subject_id], student_id: params[:student_id])
+  end
+
+  def index
+    @grades = Grade.where(student_id: params[:student_id]).where(subject_id: params[:subject_id])
   end 
 
   def destroy
-
+    @grade = Grade.find(params[:id])
+    @grade.destroy
+    redirect_to grades_path(subject_id: params[:subject_id], student_id: params[:student_id])
   end
 
   def grade_params
