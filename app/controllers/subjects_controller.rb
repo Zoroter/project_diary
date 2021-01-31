@@ -36,8 +36,9 @@ class SubjectsController < ApplicationController
   def update
     @subject = Subject.find(params[:id])
     @subject.update(subject_params)
-    times = subject_params[:times]
-    redirect_to edit_term_path(subject_id: @subject)
+    #times = subject_params[:times]
+    #redirect_to edit_term_path(subject_id: @subject)
+    redirect_to main_path
   end
 
 
