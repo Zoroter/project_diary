@@ -1,0 +1,59 @@
+<h1 class="text-center mt-4 font-weight-bold"> Users index </h1>
+<h2 class="text-center mt-4 font-weight-bold"> Search user </h2>
+
+<div class="container-fluid mt-3" style="width: 80%;">
+  <%= form_tag '#', method: :get do %>
+    <div class="form-group row ">
+      <div class="col-sm-1"> </div>
+      <div class="col-sm-9 ">
+        <%= text_field_tag :search, params[:user_data], placeholder:"Enter user data for search", class:"form-control form-control-lg" %>
+      </div>
+      <div class="col-sm-1">
+        <%= button_tag type: :submit, class: "btn btn-dark w-75 " do %>
+          <%= fa_icon 'search 2x' %>
+        <%end%>
+      </div>
+    </div>
+  <%end%>
+</div>
+
+<div class="container-fluid mt-5" style="width: 80%;">
+  <table class="table table-bordered table-dark table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 20%;" class="text-center">User</th>
+        <th scope="col" style="width: 13%;"class="text-center">Personal ID Number</th>
+        <th scope="col" style="width: 29%;"class="text-center">Email</th>
+        <th scope="col" style="width: 14%;"class="text-center">Roles</th>
+        <th scope="col" style="width: 30%;"class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="text-center">
+            <%= user.full_name %>
+          </td>
+          <td class="text-center">
+            <%= user.pin %>
+          </td>
+          <td class="text-center">
+            <%= user.email %>
+          </td>
+          <td class="text-center">
+            <%= "[ADMIN]" if user.is_admin != false %>
+            <%= "[TEACHER]" if user.teacher != nil %>
+            <%= "[TUTOR]" if user.tutor != nil %>
+            <%= "[STUDENT]" if user.student != nil %>
+            <%= "[PARENT]" if user.parent != nil %>
+          </td>
+          <td class="text-center"> 
+            <%= link_to "View User", user_path(user),class: "badge badge-pill badge-light mr-3" %>
+            <%= link_to "Edit User", edit_user_path(user),class: "badge badge-pill badge-info mr-3" %>
+            <%= link_to "Delete User", user_path(user), data: {confirm: "Are you sure"}, method: :delete, class: "badge badge-pill badge-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

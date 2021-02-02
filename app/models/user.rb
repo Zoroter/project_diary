@@ -11,7 +11,19 @@ class User < ApplicationRecord
   has_one :tutor
 
   def full_name 
-    "#{name} #{surname}"
+    "#{name} #{sname} #{surname}"
   end
+
+  def self.matches(field_name, param)
+    where("#{field_name} like ?", "%#{param}%")
+  end 
+
+  def self.search(param)
+    if param
+      param.strip!
+      result = (matches('email', param) + matches('name', param) + matches('sname', param) + matches('surname', param) + matches('pin', param)).uniq
+      result 
+    end
+  end 
 
 end

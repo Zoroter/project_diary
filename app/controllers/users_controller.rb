@@ -14,6 +14,14 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
   end
+  
+  def index 
+    if User.search(params[:search])
+      @users = User.search(params[:search])
+    else 
+      @users = User.all 
+    end
+  end 
 
   def destroy
     @user = User.find(params[:id])
@@ -21,6 +29,8 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to root_path
   end 
+
+ 
 
   private
   def user_params

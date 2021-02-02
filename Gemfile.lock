@@ -110,6 +110,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     ffi (1.14.2)
+    font-awesome-rails (4.7.0.6)
+      railties (>= 3.2, < 6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.1)
@@ -274,6 +276,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  font-awesome-rails
   hirb
   jbuilder (~> 2.7)
   listen (~> 3.2)
